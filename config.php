@@ -5,8 +5,8 @@
  */
 
 // ─── Supabase Configuration ───────────────────────────────────────
-define('SUPABASE_URL',      'https://YOUR_PROJECT.supabase.co');
-define('SUPABASE_ANON_KEY', 'YOUR_ANON_KEY_HERE');
+define('SUPABASE_URL',      'https://luvqlnwjfibljvqmrndx.supabase.co');
+define('SUPABASE_ANON_KEY', 'sb_publishable_FlGRVkmU26vnlc2DBya1Eg_pTxwwmdN');
 define('SUPABASE_TABLE',    'compras');
 
 // ─── Project Metadata ─────────────────────────────────────────────
