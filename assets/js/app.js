@@ -32,7 +32,7 @@ async function loadParticipants() {
     try {
         const { data, error } = await supabaseClient
                 .from(window.SUPABASE_TABLE)
-                .select('*, participantes(nombre_completo, dni)')
+                .select('*, participantes(nombre, dni)')
                 .order('id', { ascending: false });
 
             if (error) throw error;
@@ -40,7 +40,7 @@ async function loadParticipants() {
             // Unimos los datos cruzados para que la pantalla los entienda
             allData = data.map(fila => ({
                 ...fila,
-                nombre_completo: fila.participantes?.nombre_completo || 'Sin nombre',
+                nombre_completo: fila.participantes?.nombre || 'Sin nombre',
                 dni: fila.participantes?.dni || 'Sin DNI'
             })) || [];
         renderTable(allData);
