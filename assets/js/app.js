@@ -31,13 +31,18 @@ async function loadParticipants() {
 
     try {
         const { data, error } = await supabaseClient
-            .from(window.SUPABASE_TABLE)
-            .select('*')
-            .order('id', { ascending: false });
+                .from(window.SUPABASE_TABLE)
+                .select('*, participantes(nombre_completo, dni)')
+                .order('id', { ascending: false });
 
-        if (error) throw error;
+            if (error) throw error;
 
-        allData = data || [];
+            // Unimos los datos cruzados para que la pantalla los entienda
+            allData = data.map(fila => ({
+                ...fila,
+                nombre_completo: fila.participantes?.nombre_completo || 'Sin nombre',
+                dni: fila.participantes?.dni || 'Sin DNI'
+            })) || [];
         renderTable(allData);
         updateStats(allData);
         showToast('success', `${allData.length} registros cargados`);
