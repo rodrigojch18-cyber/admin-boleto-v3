@@ -6,7 +6,7 @@
  */
 
 // ─── Supabase Client Init ─────────────────────────────────────
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     window.SUPABASE_URL,
     window.SUPABASE_KEY
 );
@@ -30,7 +30,7 @@ async function loadParticipants() {
     showTableSkeleton();
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from(window.SUPABASE_TABLE)
             .select('*')
             .order('id', { ascending: false });
